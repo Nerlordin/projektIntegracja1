@@ -8,7 +8,7 @@ const cors = require('cors');
 
 // Używanie CORS
 app.use(cors());
-mongoose.connect('mongodb://localhost:27017/myapp', {
+mongoose.connect('mongodb://localhost:27017/OilProject', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }).then(() => {

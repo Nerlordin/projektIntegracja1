@@ -5,10 +5,10 @@ const PORT = process.env.PORT || 5000;
 const axios = require('axios');
 // Połączenie z bazą danych MongoDB
 const cors = require('cors');
-
+app.use(express.json());
 // Używanie CORS
 app.use(cors());
-mongoose.connect('mongodb://localhost:27017/OilProject', {
+mongoose.connect('mongodb://localhost:27017/Oil', {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }).then(() => {
@@ -17,6 +17,37 @@ mongoose.connect('mongodb://localhost:27017/OilProject', {
   console.error('Failed to connect to MongoDB', err);
 });
 
+
+// Definicja schematu danych
+const daneSchema = new mongoose.Schema({
+  rok: Number,
+  kraje: [{
+    kraj: String,
+    cena_paliwa: Number,
+  }],
+});
+
+// Tworzenie modelu danych na podstawie schematu
+const Dane = mongoose.model('Dane', daneSchema);
+
+// Definicja endpointu do pobrania danych
+app.get('/dane', async (req, res) => {
+  try {
+    const dane = await Dane.find({});
+    res.json(dane);
+  } catch (error) {
+    res.status(500).json({ error: 'Błąd serwera' });
+  }
+});
+app.post('/dane', async (req, res) => {
+  try {
+    const dane = req.body;
+    const createdDane = await Dane.create(dane);
+    res.json(createdDane);
+  } catch (error) {
+    res.status(500).json({ error: 'Błąd serwera' });
+  }
+});
 
 app.get('/api/salary', async (req, res) => {
   try {

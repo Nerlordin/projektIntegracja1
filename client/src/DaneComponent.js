@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import './Dane.css';
 
 const DaneComponent = () => {
   const [dane, setDane] = useState([]);
@@ -7,10 +8,10 @@ const DaneComponent = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get('/api/dane');
-        setDane(response.data.dane);
+        const response = await axios.get('http://localhost:5000/dane');
+        setDane(response.data);
       } catch (error) {
-        console.error(error);
+        console.log(error);
       }
     };
 
@@ -18,15 +19,15 @@ const DaneComponent = () => {
   }, []);
 
   return (
-    <div>
-      <h2>Dane z MongoDB:</h2>
+    <div className="container">
+      <h1>Dane</h1>
       {dane.map((item) => (
-        <div key={item.rok}>
-          <h3>Rok: {item.rok}</h3>
+        <div key={item._id}>
+          <h2>Rok: {item.rok}</h2>
           <ul>
             {item.kraje.map((kraj) => (
               <li key={kraj.kraj}>
-                {kraj.kraj} - {kraj.cena_paliwa}
+                Kraj: {kraj.kraj}, Cena paliwa: {kraj.cena_paliwa}
               </li>
             ))}
           </ul>

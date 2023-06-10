@@ -20,19 +20,38 @@ const DaneComponent = () => {
 
   return (
     <div className="container">
-      <h1>Dane</h1>
-      {dane.map((item) => (
-        <div key={item._id}>
-          <h2>Rok: {item.rok}</h2>
-          <ul>
-            {item.kraje.map((kraj) => (
-              <li key={kraj.kraj}>
-                Kraj: {kraj.kraj}, Cena paliwa: {kraj.cena_paliwa}
-              </li>
-            ))}
-          </ul>
-        </div>
-      ))}
+      <h1>MERN Starter</h1>
+      <h2>Salary Data:</h2>
+
+      <label htmlFor="year-select">Select Year:</label>
+      <select id="year-select" value={selectedYear || ''} onChange={handleYearChange}>
+        <option value="">All</option>
+        <option value="2020">2020</option>
+        <option value="2021">2021</option>
+        <option value="2022">2022</option>
+      </select>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Kraj</th>
+            {loaded &&
+              filteredSalaryData[0].map((item) => <th key={item.rok}>{item.kraj}</th>)}
+          </tr>
+        </thead>
+        <tbody>
+          {filteredSalaryData.map((item, index) => (
+            <tr key={index}>
+              <td>{item[0].rok}</td>
+              {item.map((kraj) => (
+                <td key={kraj.kraj}>{kraj.srednia_wyplata}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+
+      <h2>Wykres zmian:</h2>
     </div>
   );
 };

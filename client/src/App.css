@@ -1,38 +1,43 @@
-
 .container {
-  margin: 20px;
+  margin: 0 auto;
+  padding: 20px;
+  max-width: 800px;
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 20px;
+  color: #333;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 th,
 td {
-  width: 100px;
-  padding: 10px;
-  text-align: center;
-  border: 1px solid #ddd;
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
 }
 
 th {
-  height: 40px;
-  background-color: #f2f2f2;
+  font-weight: bold;
+  background-color: cyan;
 }
 
-input[type='text'] {
-  padding: 5px;
-  margin-top: 10px;
+tbody tr:nth-child(even) {
+  background-color: lightblue;
 }
-
-h1 {
-  text-align: center;
-  margin-bottom: 20px;
+tbody tr:nth-child(odd) {
+  background-color: lightcyan;
 }
 
 h2 {
-  margin-top: 30px;
   margin-bottom: 10px;
+  color: #555;
+}
+body {
+  background-color: lightblue;
 }

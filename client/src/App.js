@@ -65,7 +65,7 @@ const App = () => {
   });
 
   const filteredData = sortedData.filter((item) => item[0].rok >= startYear && item[0].rok <= endYear);
-  const colors = ['#FF0000', '#00FF00', '#0000FF', '#FF00FF', '#FFFF00']; // Example colors
+  const colors = ['#FF0000', '#00FF0F', '#0000FF', '#FF00FF', '#FFFF00','#0FFFF0','#0FFF0F']; // Example colors
 
   const chartData = filteredData.map((item) => {
     const rowData = {
@@ -91,7 +91,7 @@ const App = () => {
     return rowData;
   });
 
-  // Calculate the ratio between average salary and fuel price
+
   const ratioChartData = filteredData.map((item) => {
     const rowData = {
       rok: item[0].rok,
@@ -218,7 +218,7 @@ const App = () => {
                   type="monotone"
                   dataKey={item.kraj}
                   name={item.kraj}
-                  stroke={`#${index % 2 === 0 ? 'FF0000' : '00FF00'}`} // Example colors, alternate between red and green
+                  stroke={colors[index % colors.length]} // Example colors, alternate between red and green
                 />
               ))}
           </LineChart>

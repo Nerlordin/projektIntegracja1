@@ -18,7 +18,7 @@ mongoose.connect('mongodb://localhost:27017/Oil', {
 });
 
 
-// Definicja schematu danych
+/* // Definicja schematu danych
 const daneSchema = new mongoose.Schema({
   rok: Number,
   kraje: [{
@@ -26,7 +26,12 @@ const daneSchema = new mongoose.Schema({
     cena_paliwa: Number,
   }],
 });
-
+ */
+const daneSchema = new mongoose.Schema({
+  rok: Number,
+  kraj: String,
+  cena_paliwa: Number,
+});
 // Tworzenie modelu danych na podstawie schematu
 const Dane = mongoose.model('Dane', daneSchema);
 
@@ -51,7 +56,7 @@ app.post('/dane', async (req, res) => {
 
 app.get('/api/salary', async (req, res) => {
   try {
-    const response = await axios.get('https://salarybycountry.uncreative.dev/salarybycountry.json');
+    const response = await axios.get('https://salarybycountry.uncreative.dev/dane.json');
     const data = response.data;
     res.json(data);
   } catch (err) {
